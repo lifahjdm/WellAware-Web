@@ -1,78 +1,93 @@
-import { useEffect, useState } from "react";
-import logo from "../components/logo.png";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../components/logo.png";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
-  const [scroll, setScroll] = useState(false);
-  
-  const handleClick = () => {
-    setShow(!show);
+  const [activeLink, setActiveLink] = useState("/");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+    setMenuOpen(false);
   };
 
-  let menuActive = show ? "left-0" : "-left-full";
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.screenY > 5) {
-        setScroll(true);
-        setShow(false);
-      } else {
-        setScroll(false);
-      }
-    });
-  });
-
-  let scrollActive = scroll ? "py-6 bg-white shadow" : "py-4";
-
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about-us", label: "About Us" },
+    { to: "/health-news", label: "HealthNews" },
+    { to: "/blogs", label: "Blogs" },
+    { to: "/videos", label: "Videos" },
+  ];
 
   return (
-    <div className={'navbar fixed w-full transition-all ${scrollActive}'}>
-      {/* Bagian atas dengan background biru */}
-      <div className="h-7" style={{ backgroundColor: "#6BCBCF" }}></div>
+    <div className="navbar fixed top-0 left-0 w-full z-10">
+      <div className="h-7 bg-primary"></div>
 
-      {/* Navbar di bawah area biru */}
-      <nav className="flex flex-col md:flex-row justify-between items-center px-2 py-1 bg-white">
-        {/* Buttons di bagian kiri */}
-        <div
-          className={`flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-0 mt-4 md:mt-0 md:order-1 order-2 ml-10
-          lg:gap-1 md:static md:flex-row md:shadow-none 
-          md:bg-transparent md:w-auto md:h-full md:translate-y-0 md:text-black fixed ${menuActive} top-1/2 -translate-y-1/2 px-4 py-3 
-          rounded shadow-lg shadow-slate-300 bg-sky-100 font-bold text-white transition-all`}
-        >
-          <Link to="/HomePage" className="px-4 py-2 rounded-full text-gray-700 text-sm font-medium hover:text-blue-600">
-            Home
-          </Link>
-          <Link to="/AboutUsPage" className="px-4 py-2 rounded-full text-gray-700 text-sm font-medium hover:text-blue-600">
-            About Us
-          </Link>
-          <Link to="/HealthNewsPage" className="px-4 py-2 rounded-full text-gray-700 text-sm font-medium hover:text-blue-600">
-            HealthNews
-          </Link>
-          <Link to="/BlogsPage" className="px-4 py-2 rounded-full text-gray-700 text-sm font-medium hover:text-blue-600">
-            Blogs
-          </Link>
-          <Link to="/VideosPage" className="px-4 py-2 rounded-full text-gray-700 text-sm font-medium hover:text-blue-600">
-            Videos
-          </Link>
-        </div>
+      <div className="bg-white shadow-md">
+        <div className="container w-full mx-auto">
+          <nav className="flex justify-between items-center px-4 py-3">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
+              <h1 className="text-xl font-bold text-gray-800 ml-3 hidden sm:block">
+                WellAware
+              </h1>
+            </div>
 
-        {/* Logo dan Judul Website di bagian kanan */}
-        <div className="flex items-center md:order-2 order-1">
-          <i
-            className="ri-menu-line text-3xl ml-2 md:hidden block"
-            onClick={handleClick}
-          ></i>
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-12 h-12 object-contain" // Ukuran logo
-          />
-          <h1 className="text-l font-bold text-gray-800 hidden sm:block mr-10">
-            WellAware
-          </h1>
+            {/* Hamburger Icon for Mobile */}
+            <div className="sm:hidden flex items-center">
+              <button
+                className="text-gray-700 text-2xl"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                <i
+                  className={`ri-menu-line ${menuOpen ? "rotate-90" : ""}`}
+                ></i>
+              </button>
+            </div>
+
+            {/* Navbar Links (Desktop) */}
+            <div className="sm:flex flex-row space-x-6 hidden md:flex">
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`px-4 py-2 text-sm font-medium transition-all rounded-full ${
+                    activeLink === to
+                      ? "bg-secondary/30"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                  onClick={() => handleLinkClick(to)}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Navbar Links (Mobile) */}
+            <div
+              className={`${
+                menuOpen ? "block" : "hidden"
+              } flex md:hidden flex-col space-y-4 absolute top-24 left-0 right-0 bg-white px-4 py-3`}
+            >
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`px-4 py-2 text-sm font-medium transition-all rounded-full w-fit ${
+                    activeLink === to
+                      ? "bg-secondary/30"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                  onClick={() => handleLinkClick(to)}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </nav>
         </div>
-      </nav>
+      </div>
     </div>
   );
 };
