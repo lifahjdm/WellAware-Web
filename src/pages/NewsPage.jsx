@@ -8,6 +8,9 @@ import Carousel from "../components/Carousel";
 import SearchInput from "../components/SearchInput";
 import round from "../assets/images/Rectangle 4.svg";
 import footer from "../assets/images/footer.svg";
+import Tips from "../assets/images/Tips.svg";
+import Anthrax from "../assets/images/Anthrax.svg";
+
 
 const NewsPage = () => {
   const { data: newsData, loading, error } = useFetch("/data/who_news.json");
@@ -48,10 +51,11 @@ const NewsPage = () => {
       <div className="absolute inset-0 -z-10">
         <img src={round} alt="overlay" className="w-full opacity-40 h-full" />
       </div>
+
       <div>
         <section>
         {/* Carousel Section */}
-        <div className="w-full mb-24">
+        <div className="w-full mt-24 mb-20">
           <Carousel images={carouselImages} />
         </div>
         </section>
@@ -97,7 +101,51 @@ const NewsPage = () => {
         )}
       </div>
 
-      
+    {/* Tips - Tips Pencegahan Section */}
+    <div className="mt-20 mb-14 bg-[#FFE1E1] p-6 px-10 rounded-xl">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-3xl font-bold text-gray-800 mb-10 mt-10">Tips - Tips Pencegahan</h3>
+        <button
+          onClick={() => window.location.href = '/blogs'}
+          className="bg-[#FFE1E1] text-black font-medium hover:bg-primary-dark px-6 py-2 rounded-md text-lg"
+        >
+          All <span className="ml-1">&rarr;</span>
+        </button>
+      </div>
+      <div>
+      </div>
+      <div className="flex items-center space-x-8 mb-10">
+        <img
+        src={Tips}
+        alt="tips"
+        className="w-100 h-100"
+        />
+      </div>
+
+    </div>
+
+    <section className="bg-white"></section>
+
+    {/* Videos Section */}
+    <div className="mt-20 mb-14 bg-[#80B6A5] p-6 px-10 rounded-xl">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-3xl font-bold text-gray-800 mb-10 mt-10">Video Seputar Kesehatan</h3>
+        <button
+          onClick={() => window.location.href = '/videos'}
+          className="bg-[#80B6A5] text-black font-medium hover:bg-primary-dark px-6 py-2 rounded-md text-lg"
+        >
+          All <span className="ml-1">&rarr;</span>
+        </button>
+      </div>
+      <div className="flex items-center space-x-8 mb-10">
+        <img
+        src={Anthrax}
+        alt="Anthrax"
+        className="w-100 h-100"
+        />
+      </div>
+
+    </div>
 
       <section className="bg-white py-20"></section>
 

@@ -56,7 +56,7 @@ const BlogsPage = () => {
 
         {/* Carousel Section */}
         <section>
-        <div className="mb-24">
+        <div className="w-full mt-24 mb-20">
           <Carousel images={carouselImages} />
         </div>
         </section>
