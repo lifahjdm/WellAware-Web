@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../components/logo.png";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState("/");
+  const storedActiveLink = localStorage.getItem("activeLink") || "/";
+
+  const [activeLink, setActiveLink] = useState(storedActiveLink);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+    localStorage.setItem("activeLink", link);
     setMenuOpen(false);
   };
 

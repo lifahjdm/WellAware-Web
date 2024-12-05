@@ -1,9 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const CardBox = ({ title, date, category, image }) => {
+const CardBox = ({ title, date, category, image, slug }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/health-news-detail/${slug}`);
+  };
+
   return (
-    <div className="flex gap-4 items-start bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4">
-      {/* Gambar */}
+    <div className="flex gap-4 max-w-4xl mx-auto items-start bg-white rounded-xl border hover:shadow-sm transition-shadow duration-300 p-4">
       {image && (
         <img
           src={image}
@@ -12,14 +18,14 @@ const CardBox = ({ title, date, category, image }) => {
         />
       )}
 
-      {/* Konten */}
       <div className="flex flex-col justify-between">
-        {/* Tanggal dan Kategori */}
         <div className="text-sm text-gray-500 mb-2">
           <span>{date}</span> | <span>{category}</span>
         </div>
-        {/* Judul */}
-        <h2 className="font-semibold text-lg text-gray-900 hover:text-blue-600 cursor-pointer">
+        <h2
+          className="font-semibold text-lg text-gray-900 hover:text-secondary cursor-pointer"
+          onClick={handleClick}
+        >
           {title}
         </h2>
       </div>
