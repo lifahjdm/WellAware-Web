@@ -20,7 +20,7 @@ const HomePage = () => {
         <div className="flex justify-between items-center px-12 h-screen container mx-auto">
           {/* Text Section */}
           <div className="space-y-4 w-1/2">
-            <h1 className="text-sm font-medium text-[#4361EE]">
+            <h1 className="text-xl font-medium text-[#4361EE]">
               Basic Health Information
             </h1>
             <h2 className="text-4xl font-semibold text-[#0B090A]">
@@ -56,7 +56,7 @@ const HomePage = () => {
       {/* Empty Section for Spacing */}
       <section className="bg-white py-20"></section>
 
-      {/* WHO Content Section */}
+      {/* WHO ARE WE Content Section */}
       <section className="py-20">
         <img src={who} alt="who" className="w-full" />
       </section>

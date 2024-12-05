@@ -1,5 +1,6 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
+import footer from "../assets/images/footer.svg";
 
 const VideosPage = () => {
   const {
@@ -17,7 +18,8 @@ const VideosPage = () => {
   }
 
   return (
-    <div className="p-10 mx-auto mt-32 container">
+    <div>
+      <section className="p-10 mx-auto mt-32 container">
       <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">
         Videos
       </h1>
@@ -39,6 +41,16 @@ const VideosPage = () => {
           </div>
         </div>
       ))}
+      </section>
+
+      <section className="bg-white py-20"></section>
+
+      {/* Footer Section */}
+      <div>
+      <section>
+        <img src={footer} alt="footer" className="w-full h-auto" />
+      </section>
+      </div>
     </div>
   );
 };

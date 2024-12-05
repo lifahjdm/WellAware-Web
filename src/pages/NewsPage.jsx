@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import Carousel from "../components/Carousel";
 import SearchInput from "../components/SearchInput";
 import round from "../assets/images/Rectangle 4.svg";
+import footer from "../assets/images/footer.svg";
 
 const NewsPage = () => {
   const { data: newsData, loading, error } = useFetch("/data/who_news.json");
@@ -47,16 +48,20 @@ const NewsPage = () => {
       <div className="absolute inset-0 -z-10">
         <img src={round} alt="overlay" className="w-full opacity-40 h-full" />
       </div>
-      <div className="p-8 mb-8 container mx-auto relative">
+      <div>
+        <section>
         {/* Carousel Section */}
-        <div className="mb-24">
+        <div className="w-full mb-24">
           <Carousel images={carouselImages} />
         </div>
+        </section>
 
         {/* Title */}
+        <section className="p-8 mb-8 container mx-auto relative">
         <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">
           <span className="text-primary">Health</span> News
         </h1>
+        </section>
 
         {/* Search Input */}
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -90,6 +95,17 @@ const NewsPage = () => {
             onPageChange={handlePageChange}
           />
         )}
+      </div>
+
+      
+
+      <section className="bg-white py-20"></section>
+
+      {/* Footer Section */}
+      <div>
+      <section>
+        <img src={footer} alt="footer" className="w-full" />
+      </section>
       </div>
     </>
   );

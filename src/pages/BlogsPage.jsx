@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import Carousel from "../components/Carousel";
 import SearchInput from "../components/SearchInput";
 import round from "../assets/images/Rectangle 4.svg";
+import footer from "../assets/images/footer.svg";
 
 const carouselImages = [
   "https://www.trans7.co.id/images/7update/7_Cara_Menjaga_Kesehatan_Jantungmu_1582108037.jpeg",
@@ -51,12 +52,16 @@ const BlogsPage = () => {
         />
       </div>
 
-      <div className="p-8 mt-16 mb-20 bg-white-100 min-h-screen container mx-auto relative">
+      <div>
+
         {/* Carousel Section */}
+        <section>
         <div className="mb-24">
           <Carousel images={carouselImages} />
         </div>
+        </section>
 
+        <section className="p-8 mt-16 mb-20 bg-white-100 min-h-screen container mx-auto relative">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
           <span className="text-primary">Health</span> Blogs
         </h1>
@@ -94,6 +99,12 @@ const BlogsPage = () => {
             onPageChange={handlePageChange}
           />
         )}
+        </section>
+
+      </div>
+      {/* Footer Section */}
+      <div>
+        <img src={footer} alt="footer" className="w-full" />
       </div>
     </div>
   );
