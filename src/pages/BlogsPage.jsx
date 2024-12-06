@@ -53,54 +53,52 @@ const BlogsPage = () => {
       </div>
 
       <div>
-
         {/* Carousel Section */}
         <section>
-        <div className="w-full mt-24 mb-20">
-          <Carousel images={carouselImages} />
-        </div>
+          <div className="w-full mt-24 mb-20 overflow-hidden">
+            <Carousel images={carouselImages} />
+          </div>
         </section>
 
         <section className="p-8 mt-16 mb-20 bg-white-100 min-h-screen container mx-auto relative">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-          <span className="text-primary">Health</span> Blogs
-        </h1>
+          <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+            <span className="text-primary">Health</span> Blogs
+          </h1>
 
-        {/* Search Input */}
-        <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          {/* Search Input */}
+          <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-        {/* Blog Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {currentItems?.length > 0 ? (
-            currentItems.map((blog, index) => {
-              const slug = generateSlug(blog.title);
-              return (
-                <Card
-                  key={index}
-                  slug={slug}
-                  title={blog.title}
-                  subtitle={blog.subtitle}
-                  date={blog.date}
-                  time_read={blog.time_read}
-                  thumbnail={blog.thumbnail}
-                />
-              );
-            })
-          ) : (
-            <div className="text-center text-gray-500">No results found</div>
+          {/* Blog Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {currentItems?.length > 0 ? (
+              currentItems.map((blog, index) => {
+                const slug = generateSlug(blog.title);
+                return (
+                  <Card
+                    key={index}
+                    slug={slug}
+                    title={blog.title}
+                    subtitle={blog.subtitle}
+                    date={blog.date}
+                    time_read={blog.time_read}
+                    thumbnail={blog.thumbnail}
+                  />
+                );
+              })
+            ) : (
+              <div className="text-center text-gray-500">No results found</div>
+            )}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           )}
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
-        )}
         </section>
-
       </div>
       {/* Footer Section */}
       <div>

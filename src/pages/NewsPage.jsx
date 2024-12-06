@@ -55,7 +55,7 @@ const NewsPage = () => {
       <div>
         <section>
         {/* Carousel Section */}
-        <div className="w-full mt-24 mb-20">
+        <div className="w-full mt-24 mb-20 overflow-hidden">
           <Carousel images={carouselImages} />
         </div>
         </section>
